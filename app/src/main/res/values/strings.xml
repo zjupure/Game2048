@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">2048</string>
+
+    <string name="best_score">BEST</string>
+    <string name="cur_score">SCORE</string>
+    <string name="game_over">GAME OVER</string>
+    <string name="restart">RESTART</string>
+</resources>

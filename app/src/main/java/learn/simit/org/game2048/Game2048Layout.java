@@ -26,7 +26,7 @@ public class Game2048Layout extends ViewGroup{
     public static final int ACTION_DOWN_SWIPE = 1;
     public static final int ACTION_LEFT_SWIPE = 2;
     public static final int ACTION_RIGHT_SWIPE = 3;
-    public static final int MIN_FLING_DIS = 20;
+    public static final int MIN_FLING_DIS = 50;
     private static final String[] NUM_COLOR = {"#CDC1B4","#EEE4DA","#EDE0C8","#F2B179","#F59563",
     	"#F67C5F","#F65E3B","#EDCF72","#EDCC61","#EDC850","#EEC340","#EEC22E","#FF3D3D","#FF1C1E",
             "#FF1E20","#FF1D1F"};
@@ -156,9 +156,10 @@ public class Game2048Layout extends ViewGroup{
     public void dealWithSwipe(int action){
         int index = 0;
         boolean isMerge = false;
+        List<Integer> row = new ArrayList<>();
         // line by line
         for(int i = 0; i < mColumn; i++){
-            List<Integer> row = new ArrayList<>();
+            row.clear();
             for(int j = 0; j < mColumn; j++){
                 index = getNumberIndex(action, i, j);
                 if(mNumbers[index] > 0){
@@ -169,7 +170,7 @@ public class Game2048Layout extends ViewGroup{
             int k = 0;
             for(int j = 0; j < row.size(); j++){
                 index = getNumberIndex(action, i, k);
-                if(j+1 < row.size() && row.get(j) == row.get(j+1)){
+                if(j+1 < row.size() && row.get(j).equals(row.get(j+1))){
                     mNumbers[index] = row.get(j) << 1;  // x2
                     updateLabel(index);
                     mScore += mNumbers[index];
